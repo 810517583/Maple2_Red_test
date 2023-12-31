@@ -50,10 +50,8 @@ public partial class GlobalService : Global.GlobalBase {
                 account.MachineId = machineId;
                 db.UpdateAccount(account, true);
             } else if (account.MachineId != machineId) {
-                return Task.FromResult(new LoginResponse {
-                    Code = LoginResponse.Types.Code.BlockNexonSn,
-                    Message = "MachineId mismatch",
-                });
+                account.MachineId = machineId;
+                db.UpdateAccount(account, true);
             }
         }
 
